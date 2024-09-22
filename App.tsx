@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import { SplashScreen } from "expo-router";
 import HomeScreen from "./src/HomeScreen";
 import Profile from "./src/Profile";
+import TabsLayout from "./src/Tabs";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,13 +35,12 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Navigator initialRouteName="home">
+          <Stack.Screen name="home" options={{headerShown: false}} component={HomeScreen} />
+          <Stack.Screen name="profile" component={Profile} />
+          <Stack.Screen name="tabs" options={{headerShown: false}} component={TabsLayout} />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaProvider>
   );
 }
